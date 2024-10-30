@@ -194,10 +194,12 @@ int main(int argc, char *argv[]) {
         std::string line;
         int i = 0;
         while (std::getline(quiz_data_txt, line)) {
-            if (line == "") {
-                i = 0;
-                quiz_data.push_back(cq);
+            if (line == "" || line == " ") {
+                if (i > 0) {
+                    quiz_data.push_back(cq);
+                }
                 cq = {};
+                i = 0;
                 continue;
             }
             if (i == 0) {
