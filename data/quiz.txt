@@ -630,8 +630,8 @@ Reflective shading
 None of the above
 
 What typically happens to light when it hits a non-optically flat surface?
-It reflects perfectly in one direction.
 It scatters into multiple directions.
+It reflects perfectly in one direction.
 It is absorbed by the surface.
 It is transmitted without any interaction.
 None of the above

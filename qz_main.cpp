@@ -1,5 +1,4 @@
 #include <fstream>
-#include <iostream>
 #include <raylib.h>
 #include <string>
 #include <vector>
@@ -262,8 +261,9 @@ int main(int argc, char *argv[]) {
         Rectangle sa_toggle_cbox =
             Rectangle{static_cast<float>(3 * width / 4), 0,
                       static_cast<float>(width / 4), static_cast<float>(cy)};
-        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) &&
-            CheckCollisionPointRec(GetMousePosition(), sa_toggle_cbox)) {
+        if ((IsMouseButtonPressed(MOUSE_BUTTON_LEFT) &&
+             CheckCollisionPointRec(GetMousePosition(), sa_toggle_cbox)) ||
+            IsKeyPressed(KEY_SPACE)) {
             quiz_guy.set_sa(!quiz_guy.get_sa());
         }
         if (IsKeyPressedRepeat(KEY_J) || IsKeyPressed(KEY_J)) {
