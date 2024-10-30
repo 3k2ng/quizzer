@@ -106,7 +106,8 @@ inline int draw_quiz(const int x, const int y, const int w, const Quiz &quiz,
                      const int selected = -1, const bool show_answer = false) {
     constexpr int border_size = 4.;
     int cy =
-        dtb(quiz.question, x, y, w, border_size, GRAY, LIGHTGRAY) + border_size;
+        dtb(quiz.question, x, y, w, border_size, GRAY, {180, 180, 200, 255}) +
+        border_size;
     if (show_answer) {
         for (int i = 0; i < quiz.options.size(); ++i) {
             Color border_color = i == selected ? MAROON : GRAY;
@@ -180,6 +181,14 @@ class QuizGuy {
         _i = (_i + _quizzes.size() - 1) % _quizzes.size();
     }
 
+    inline void cycle_selected_up() {
+        _selected[_i] = (_selected[_i] + _quizzes[_i].options.size() - 1) %
+                        _quizzes[_i].options.size();
+    }
+    inline void cycle_selected_down() {
+        _selected[_i] = (_selected[_i] + 1) % _quizzes[_i].options.size();
+    }
+
   private:
     std::vector<Quiz> _quizzes;
     std::vector<int> _selected;
@@ -213,45 +222,62 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    InitWindow(800, 600, "quizzer");
+    InitWindow(1200, 800, "quizzer");
     SetRandomSeed(time(0));
     QuizGuy quiz_guy{quiz_data};
     roboto_mono = LoadFont("./data/RobotoMono-Regular.ttf");
     while (!WindowShouldClose()) {
+        const int width = GetScreenWidth(), height = GetScreenHeight();
+        constexpr int border_size = 4;
         BeginDrawing();
         ClearBackground(RAYWHITE);
         int cy = 0;
         cy = dtb(TextFormat("%d / %d", quiz_guy.get_i() + 1,
                             quiz_guy.get_max_i()),
-                 0, 0, 200 - 4, 4, GRAY, LIGHTGRAY) +
+                 0, 0, width / 4 - border_size, border_size, GRAY, LIGHTGRAY) +
              4;
-        dtb("prev", 200, 0, 200 - 4, 4, GRAY, LIGHTGRAY);
+        dtb("prev", width / 4, 0, width / 4 - border_size, border_size, GRAY,
+            LIGHTGRAY);
         Rectangle pq_toggle_cbox =
-            Rectangle{200, 0, 200, static_cast<float>(cy)};
-        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) &&
-            CheckCollisionPointRec(GetMousePosition(), pq_toggle_cbox)) {
+            Rectangle{static_cast<float>(width / 4), 0,
+                      static_cast<float>(width / 4), static_cast<float>(cy)};
+        if ((IsMouseButtonPressed(MOUSE_BUTTON_LEFT) &&
+             CheckCollisionPointRec(GetMousePosition(), pq_toggle_cbox)) ||
+            IsKeyPressedRepeat(KEY_H) || IsKeyPressed(KEY_H)) {
             quiz_guy.prev_quiz();
         }
+        dtb("next", 2 * width / 4, 0, width / 4 - border_size, border_size,
+            GRAY, LIGHTGRAY);
         Rectangle nq_toggle_cbox =
-            Rectangle{400, 0, 200, static_cast<float>(cy)};
-        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) &&
-            CheckCollisionPointRec(GetMousePosition(), nq_toggle_cbox)) {
+            Rectangle{static_cast<float>(2 * width / 4), 0,
+                      static_cast<float>(width / 4), static_cast<float>(cy)};
+        if ((IsMouseButtonPressed(MOUSE_BUTTON_LEFT) &&
+             CheckCollisionPointRec(GetMousePosition(), nq_toggle_cbox)) ||
+            IsKeyPressedRepeat(KEY_L) || IsKeyPressed(KEY_L)) {
             quiz_guy.next_quiz();
         }
-        dtb("next", 400, 0, 200 - 4, 4, GRAY, LIGHTGRAY);
-        dtb("show answer", 600, 0, 200, 4, quiz_guy.get_sa() ? BLUE : GRAY,
+        dtb("show answer", 3 * width / 4, 0, width / 4, border_size,
+            quiz_guy.get_sa() ? BLUE : GRAY,
             quiz_guy.get_sa() ? SKYBLUE : LIGHTGRAY);
         Rectangle sa_toggle_cbox =
-            Rectangle{600, 0, 200, static_cast<float>(cy)};
+            Rectangle{static_cast<float>(3 * width / 4), 0,
+                      static_cast<float>(width / 4), static_cast<float>(cy)};
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) &&
             CheckCollisionPointRec(GetMousePosition(), sa_toggle_cbox)) {
             quiz_guy.set_sa(!quiz_guy.get_sa());
         }
-        quiz_guy.draw_current_quiz(0, cy, 800);
+        if (IsKeyPressedRepeat(KEY_J) || IsKeyPressed(KEY_J)) {
+            quiz_guy.cycle_selected_down();
+        }
+        if (IsKeyPressedRepeat(KEY_K) || IsKeyPressed(KEY_K)) {
+            quiz_guy.cycle_selected_up();
+        }
+        quiz_guy.draw_current_quiz(0, cy, width);
         if (quiz_guy.get_sa()) {
             dtb(TextFormat("%d / %d", quiz_guy.get_grade(),
                            quiz_guy.get_max_i()),
-                600, 600 - 40, 200, 4, GRAY, LIGHTGRAY);
+                3 * width / 4, height - font_height - border_size, width / 4,
+                border_size, GRAY, LIGHTGRAY);
         }
         EndDrawing();
     }
