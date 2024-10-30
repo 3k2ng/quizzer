@@ -1,0 +1,294 @@
+What is the main difference between Ray Marching and Ray Tracing?
+Ray Marching steps incrementally along the ray until an intersection is found
+Ray Marching calculates exact intersections while Ray Tracing uses iterative steps
+Ray Marching is more efficient for rendering explicit surfaces
+Ray Tracing uses distance functions while Ray Marching does not
+None of the above
+
+In Ray Marching, what happens when the distance to the nearest surface becomes smaller than a specified threshold?
+An intersection is considered to have been found
+The ray continues marching until it exits the scene
+The ray is discarded
+The rendering process restarts
+None of the above
+
+Sphere Tracing is primarily designed to handle what type of surfaces?
+Implicit surfaces
+Explicit surfaces
+Polygonal surfaces
+Parametric surfaces
+None of the above
+
+What key mathematical function is used in Sphere Tracing to determine the step size of a ray?
+Distance to the nearest object
+Ray length
+Vector cross product
+Ray's depth value
+None of the above
+
+In Sphere Tracing, which condition typically triggers the termination of the ray-marching process?
+The maximum number of steps is reached
+The ray intersects with the camera
+The ray exits the view frustum
+The ray hits a point light source
+None of the above
+
+What function in Sphere Tracing provides the distance to the nearest surface for each point in the scene?
+Signed Distance Function (SDF)
+Fragment Shader Function (FSF)
+Surface Normal Function (SNF)
+Interpolation Distance Function (IDF)
+None of the above
+
+How does Sphere Tracing improve efficiency compared to traditional Ray Marching?
+By avoiding unnecessary steps and ensuring no intersections are missed
+By using larger step sizes
+By reducing the number of rays cast
+By increasing the frequency of surface normal calculations
+None of the above
+
+In the context of Sphere Tracing, what is the purpose of the Signed Distance Function (SDF)?
+To calculate the step size based on the distance to the nearest surface
+To calculate the surface color based on lighting
+To determine the normal vector at the intersection point
+To compute the camera's position relative to the object
+None of the above
+
+Which of the following best describes a primary advantage of Sphere Tracing?
+It allows for efficient rendering of complex, implicit surfaces like fractals
+It simplifies texture mapping for polygonal models
+It improves the rendering of specular reflections
+It is used exclusively for real-time physics simulations
+None of the above
+
+In Sphere Tracing, how are normals typically computed at a surface intersection?
+By using central differencing on the Signed Distance Field (SDF)
+By calculating the gradient of the ray direction
+By projecting the ray onto the surface normal
+By integrating the light source's direction into the SDF
+None of the above
+
+Which of the following scenarios would result in the termination of a ray during the ray marching process?
+The ray exceeds the maximum number of steps
+The ray hits the scene's bounding box
+The ray enters a reflective surface
+The camera position changes
+None of the above
+
+What is the primary difference between Sphere Tracing and traditional Ray Tracing?
+Sphere Tracing uses iterative steps, while Ray Tracing finds exact intersections
+Sphere Tracing only works for transparent objects
+Ray Tracing is used for rasterization, while Sphere Tracing is not
+Sphere Tracing cannot handle complex light interactions
+None of the above
+
+In Ray Marching, what is the purpose of the threshold known as "Surface Hit Distance" (SURF_DIST)?
+To determine when to stop marching the ray
+To calculate the color of a pixel
+To define the maximum depth for reflections
+To limit the number of steps in the marching process
+None of the above
+
+Which of the following factors directly influences the efficiency of Ray Marching?
+The frequency of Signed Distance Function (SDF) evaluations
+The number of light sources in the scene
+The type of shading model used
+The resolution of textures applied to objects
+None of the above
+
+What is a major limitation of Ray Marching when compared to other rendering techniques?
+Increased computational cost due to iterative steps
+Inability to render transparent objects
+Poor handling of polygonal models
+Inaccurate representation of lighting effects
+None of the above
+
+Sphere Tracing is particularly suited for rendering which of the following types of visual effects?
+Fractals and smooth implicit surfaces
+Soft shadows
+Procedural textures
+Motion blur and depth of field
+None of the above
+
+What is the primary purpose of the rendering equation introduced by Kajiya (1986)?
+To simulate refraction
+To generalize various rendering algorithms into a single integral equation
+To model only diffuse reflections
+To handle radiosity
+None of the above
+
+The rendering equation accounts for which two main components of light?
+Reflection and refraction
+Emission and scattering
+Transmission and occlusion
+Diffuse and specular components
+None of the above
+
+What is the role of the geometry term g(x,x') in the rendering equation?
+It accounts for surface roughness
+It encodes occlusion and visibility between two points
+It models the scattering of light
+It defines the intensity of emitted light
+None of the above
+
+In the context of the rendering equation, what does the emittance term e(x,x') represent?
+Light scattered from one surface to another
+The energy absorbed by a surface
+The energy emitted by a surface element
+The visibility between two points
+None of the above
+
+Which of the following methods is used to approximate the solution to the rendering equation?
+Radiosity
+Ray tracing
+Monte Carlo integration
+Photon mapping
+None of the above
+
+What is a critical assumption made in the rendering equation regarding media between surfaces?
+The media has a non-homogeneous refractive index
+The media itself does not participate in light scattering
+The media only transmits light without reflection
+The media is always participating in scattering
+None of the above
+
+Kajiya's rendering equation is an approximation of which set of physical laws?
+Maxwell's equations for electromagnetism
+Laws of thermodynamics
+Navier-Stokes equations
+Fick's laws of diffusion
+None of the above
+
+In the rendering equation, the scattering term p(x,x',x'') refers to:
+The energy emitted from one point
+The probability of light being absorbed by a surface
+The intensity of energy scattered from one surface element to another
+The intensity of light reflected from a transparent surface
+None of the above
+
+What technique did Kajiya introduce to reduce variance in Monte Carlo rendering?
+Path tracing
+Importance sampling
+Hierarchical sampling
+Stratified sampling
+None of the above
+
+Which of the following phenomena is not modeled by Kajiya's rendering equation?
+Reflection
+Transmission
+Diffraction
+Emission
+None of the above
+
+The term "distributed ray tracing," as discussed by Kajiya, refers to:
+A method of simulating only direct lighting
+Ray tracing extended to handle complex optical effects like motion blur and depth of field
+A simplified version of traditional ray tracing
+Ray tracing applied to diffuse surfaces
+None of the above
+
+The Neumann series expansion used in solving the rendering equation is employed to:
+Solve differential equations
+Approximate the integral in the rendering equation
+Model photon mapping
+Represent geometric occlusion
+None of the above
+
+What physical interpretation does the Neumann series provide in the context of the rendering equation?
+A direct term followed by multiple scattering terms
+The calculation of transmission only
+An approximation of surface normals
+A method to reduce noise in Monte Carlo rendering
+None of the above
+
+What is the primary difference between radiosity and the rendering equation?
+Radiosity assumes perfectly diffuse surfaces, while the rendering equation does not
+Radiosity is used for specular surfaces, while the rendering equation is for diffuse surfaces
+The rendering equation handles transmission, while radiosity does not
+Radiosity only works for monochromatic light, while the rendering equation is general
+None of the above
+
+What is the advantage of using hierarchical sampling as proposed by Kajiya?
+It simplifies shadow computations
+It reduces the number of samples required by concentrating on important regions
+It improves the computation of caustics
+It handles occlusion better than traditional methods
+None of the above
+
+Which of the following is an optical phenomenon that the rendering equation does not model directly but can be generalized to include?
+Reflection
+Scattering
+Diffraction
+Transmission
+None of the above
+
+Which mathematical operation is at the core of solving the rendering equation?
+Differentiation
+Integration
+Matrix inversion
+Fourier transformation
+None of the above
+
+Which concept is NOT related to the rendering equation?
+Bidirectional reflection
+Diffraction grating
+Visibility between points
+Monte Carlo sampling
+None of the above
+
+Kajiya's rendering equation is primarily aimed at simulating:
+Energy transfer between light sources
+The interaction of light with surfaces
+Thermal conduction
+Electromagnetic wave propagation
+None of the above
+
+In the Monte Carlo method for solving the rendering equation, variance reduction techniques are used to:
+Speed up rendering
+Ensure energy conservation
+Minimize noise in rendered images
+Handle diffuse reflections
+None of the above
+
+In Kajiya's method, how is occlusion between surface points typically handled?
+Using an occlusion map
+Through the geometry term in the rendering equation
+By casting additional rays
+By solving a set of linear equations
+None of the above
+
+What is the significance of the geometry term in the rendering equation?
+It models the physical properties of surfaces
+It ensures that energy is conserved across the scene
+It accounts for the relative positioning and visibility of surface points
+It models the scattering behavior of light on rough surfaces
+None of the above
+
+Which method is commonly used to solve integral equations such as Kajiya's rendering equation?
+Neumann series expansion
+Euler's method
+Newton-Raphson method
+Runge-Kutta method
+None of the above
+
+What effect does the scattering term have in the rendering equation?
+It determines the visibility between two surface points
+It adds the light intensity scattered from one surface to another
+It modifies the energy emitted by a surface
+It eliminates the need for reflection calculations
+None of the above
+
+Which of the following was NOT an innovation introduced in Kajiya's rendering equation paper?
+Hierarchical sampling
+Path tracing
+Distributed ray tracing
+Radiosity
+None of the above
+
+Which of the following optical effects can be modeled using extensions of the rendering equation?
+Diffraction
+Caustics
+Motion blur
+All of the above
+None of the above
+
